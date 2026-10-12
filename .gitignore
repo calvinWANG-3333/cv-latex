@@ -17,3 +17,7 @@ output/
 
 # Original Word-era PDF (kept locally as reference)
 Resume_Ruihang_Wang_BI_stage.pdf
+
+# Sponsor registers (bulky, refreshed on demand -- see reference/README.md)
+reference/*.csv
+reference/*.meta.json

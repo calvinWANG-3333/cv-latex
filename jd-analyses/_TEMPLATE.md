@@ -8,6 +8,10 @@
 - Contract:
 - Location:
 
+## Visa / Contract
+- Sponsor check: `python3 reference/check_sponsor.py <company> --<uk|nl|es|lu> --salary <offer>`
+- Result:
+
 ## CV Tailoring Instructions
 - Base / variant:
 - Summary line:

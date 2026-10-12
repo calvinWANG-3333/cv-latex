@@ -1,0 +1,301 @@
+\documentclass[10pt, a4paper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=1.1 cm, % seperation between body and page edge from the top
+    bottom=1.0 cm, % seperation between body and page edge from the bottom
+    left=1.4 cm, % seperation between body and page edge from the left
+    right=1.4 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 0, 0} % define primary color
+
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={Ruihang (Calvin) WANG's CV},
+    pdfauthor={Ruihang (Calvin) WANG},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=blue,
+    citecolor=blue
+}
+\usepackage{ulem}
+\normalem
+
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+% Charter typeface. pdfLaTeX: charter package. XeLaTeX/LuaLaTeX: XCharter via fontspec.
+\ifPDFTeX
+    \usepackage{charter}
+\else
+    \usepackage{fontspec}
+    \setmainfont{XCharter}
+\fi
+
+% Some settings:
+\raggedright
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0.15cm} % set column seperation
+\pagenumbering{gobble} % no page numbering
+\linespread{0.96} % slightly tighter lines to keep one page
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.12 cm
+}{
+    % bottom space:
+    0.06 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.04 cm,
+        parsep=0.02cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+\newcommand{\stronglink}[2]{%
+    \href{#1}{\textbf{\uline{\textcolor{blue}{#2}}}}%
+}
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0 cm + 0.00001 cm
+    }{
+        0 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.6 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.2}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{$|$}
+
+    \begin{header}
+        \fontsize{25 pt}{25 pt}\selectfont Ruihang (Calvin) WANG
+
+        \vspace{5 pt}
+
+        \normalsize
+        \mbox{b00821188@essec.edu}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{+33 7 45 43 45 68}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{http://www.linkedin.com/in/calvin-ruihang-wang}{linkedin.com/in/calvin-ruihang-wang}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{https://github.com/calvinWANG-3333}{github.com/calvinWANG-3333}}%
+
+        \vspace{3 pt}
+
+        \mbox{\textit{Languages: Chinese (Native) • English (TOEFL 105, working proficiency) • French (A2)}}
+    \end{header}
+
+    \vspace{2 pt - 0.2 cm}
+
+    % TODO: Summary section (to be written once positioning is decided: BI vs Analytics Engineer)
+
+    \section{Education}
+        \begin{twocolentry}{Sep 2024 – Dec 2027}
+            \textbf{ESSEC Business School \& CentraleSupélec} \\
+            \textit{Master in Data Sciences and Business Analytics (DSBA)}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item \textbf{Core courses:} Data Driven Marketing (17/20), Probability \& Statistics (19/20), Database (15/20), Python Programming (15/20), Linear Algebra (15/20), Algorithms \& Complexity (15/20)
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.12 cm}
+
+        \begin{twocolentry}{Sep 2020 – Jun 2024}
+            \textbf{Shanghai University of Finance and Economics} \\
+            \textit{Bachelor of Economics in Investments}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item \textbf{Core courses:} Data Mining (4.0/4.0), Economic Management of Computer Application (4.0/4.0), Advanced Mathematics II (4.0/4.0), Python Programming (3.7/4.0), Probability Theory (3.7/4.0), Calculus (3.7/4.0)
+            \end{highlights}
+        \end{onecolentry}
+
+    \section{Luxury Marketing Analytics Projects}
+        \begin{twocolentry}{
+            \stronglink{https://app.powerbi.com/view?r=eyJrIjoiMmQ2MjBmYzMtYWZjYy00MjdlLThjMDQtYzllNTNiMTU0OGJkIiwidCI6IjYxZjNlM2I4LTliNTItNDMzYS1hNGViLWM2NzMzNGNlNTRkNSIsImMiOjh9&pageName=f5f8b60aeb33018aea07}{Dashboard} \,|\, Dec 2025
+        }
+            \textbf{Luxury Maison CRM \& Marketing Performance Dashboard} - Power BI \,|\, Python
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Built a \textbf{star schema BI data model} (Dim\_Date/Region/Channel/Maison/Customer/Campaign + Fact\_Orders/Fact\_Survey) and simulated a FY23–25 dataset (\textbf{70K orders, 8K surveys, 12K clients, 350 campaigns}) in Python based on a luxury group's annual reports, with luxury dynamics assumptions such as \textbf{VIC top-5\% tiering}, \textbf{weighted purchasing}, \textbf{lognormal heavy-tail ticket sizes by maison}, \textbf{channel-specific discounts \& return rates} and \textbf{18\% campaign attribution} matched on region/channel/maison type.
+                \item Implemented marketing performance \& campaign tracking \textbf{KPIs} such as Revenue, Orders, AOV, YoY\%, \textbf{Campaign ROI} and \textbf{campaign-attributed revenue}, enabling regional/channel splits and top-campaign benchmarking.
+                \item Delivered consumer insights by connecting \textbf{CRM value concentration} (repeat behavior, Avg/Median CLV, \textbf{VIC revenue share}, \textbf{RFM scatter}) with \textbf{CX \& brand perception} (NPS/CSAT, wait time, issue resolution, sentiment and verbatims) to support CX evaluation.
+            \end{highlights}
+        \end{onecolentry}
+
+    \section{Professional Experience}
+        % TODO: LuxuryNsight entry (to be added)
+
+        \begin{twocolentry}{
+            Jul 2022 – Dec 2022
+        }
+            \textbf{Equity Research Intern}, Minsheng Securities -- Shanghai, China
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Conducted an \textbf{equity research} report of over 100 pages on FESCO, a global leader in flexible employment solutions, analyzing its business model, market potential, competitive landscape, and growth drivers against overseas HR peers.
+                \item Built a \textbf{business segmentation and revenue projection model} for FESCO using Wind and Capital IQ data, and performed DCF valuation and \textbf{sensitivity analysis} on five-year revenue scenarios.
+                \item Built 10+ \textbf{data warehouses} using \textbf{SSAS} after an \textbf{ETL} process in \textbf{MySQL}; created social service industry \textbf{metrics} such as avg. flexible employment placement time to compare the big 4 flexible HR providers.
+                \item Authored event and operational reviews across industries, and delivered weekly, daily and other high-frequency \textbf{data visualization} tracking reports in \textbf{Power BI}.
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.12 cm}
+
+        \begin{twocolentry}{
+            Sep 2021 – Feb 2022
+        }
+            \textbf{Consultant Assistant Intern}, ZS Associates -- Shanghai, China
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Conducted 30+ \textbf{desk and industry research projects} on Huiminbao, a nationwide health insurance scheme in China, to complete the company's product catalog for special cancer drugs and market mapping.
+                \item Participated in 40+ interviews with medical experts and delivered bilingual summaries within two hours after each interview.
+                \item Maintained a daily internal pharma industry Power BI dashboard and developed 50+ \textbf{interactive reports and visuals}, enabling agile decision-making.
+            \end{highlights}
+        \end{onecolentry}
+
+    \section{Business Intelligence Projects}
+        % TODO: Databricks + dbt pricing pipeline project (to be added)
+
+        \begin{twocolentry}{
+            \stronglink{https://www.kaggle.com/calvinwang0312}{Kaggle} \,|\, Sep – Dec 2023
+        }
+            \textbf{Kaggle Projects} - Python \,|\, scikit-learn \,|\, Power BI
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Performed \textbf{EDA} to identify patterns, relationships, and potential issues on Netflix, World Bank PPI and Groceries datasets.
+                \item Applied \textbf{machine learning algorithms}, including \textbf{Random Forests}, \textbf{TF-IDF} and \textbf{Apriori association rules}, to build predictive and classification models, achieving an average accuracy of 97\% on World Bank PPI predictions.
+                \item Developed \textbf{Power BI} dashboards during EDA to surface key insights, gaining 20 upvotes on Kaggle and a bronze medal in the Netflix dataset analysis.
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.12 cm}
+
+        \begin{twocolentry}{
+            \stronglink{https://app.powerbi.com/view?r=eyJrIjoiNjM1Yjk2YmItMjhmZC00MThmLWI2MGUtNWQ1MjQ4N2EzM2ZmIiwidCI6IjkzNmViZDRkLTEyMDctNDkzNC1hMjNkLTk3MzQyMGIwNDg1YSIsImMiOjR9}{Sales} \,|\,
+            \stronglink{https://app.powerbi.com/view?r=eyJrIjoiMGE3NDQ5N2QtZjA0NS00NmM3LTljODgtYjU5ZGYwYjg4MzI4IiwidCI6IjkzNmViZDRkLTEyMDctNDkzNC1hMjNkLTk3MzQyMGIwNDg1YSIsImMiOjR9}{Survey} \,|\, Mar 2024
+        }
+            \textbf{YourFashion Sales \& Europe LGBT Survey Visualization} - Power BI \,|\, Python
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Designed the \textbf{BI architecture} and a \textbf{star schema data warehouse model} in \textbf{Power Query}, and created \textbf{time intelligence} sales \textbf{metrics} to measure YourFashion's business performance.
+                \item Developed a \textbf{data preprocessing and normalization} framework in \textbf{Python (Pandas)}, with a weighting system correcting the uneven distribution of respondents across LGBT identities, producing a dataset ready for statistical analysis in Power BI.
+            \end{highlights}
+        \end{onecolentry}
+
+    \section{Extracurricular Activities}
+        \begin{onecolentry}
+            \textbf{Team Leader}, SUFE Thousand Villages Field Survey (2021) \,•\, \textbf{Vice President}, SUFE English Salon Club (2021 – 2022)
+        \end{onecolentry}
+
+    \section{Skills \& Additional}
+        \begin{onecolentry}
+        \textbf{Programming:} Python (NumPy, Pandas) \\
+        \textbf{Analytics:} SQL (MySQL, PostgreSQL), Power Query, Python (ProfileReport), Excel \\
+        \textbf{Visualization:} Power BI, Tableau, Python (Seaborn, Matplotlib, Pywaffle), PowerPoint, Excel, Google Sheets \\
+        \textbf{Certifications \& Awards:} Inside LVMH, Top 100 Teams in Oliver Wyman Case Competition, Google Data Analyst
+        \end{onecolentry}
+
+\end{document}

@@ -1,0 +1,19 @@
+CLAUDE.md
+.DS_Store
+settings.json
+
+# LaTeX build artifacts
+build/
+output/
+
+# Stray LaTeX outputs if a build ever runs without out_dir
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# Original Word-era PDF (kept locally as reference)
+Resume_Ruihang_Wang_BI_stage.pdf
